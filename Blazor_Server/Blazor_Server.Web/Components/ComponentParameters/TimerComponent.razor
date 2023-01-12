@@ -1,0 +1,30 @@
+﻿@using System.Threading;
+@implements IDisposable;
+<div class="float-end p-3 bg-warning">
+    <h5 class="text-danger">Date: @theDate</h5>
+    <strong class="text-info">Time: @theTime</strong>
+</div>
+
+
+@code {
+    string? theDate;
+    string? theTime;
+    Timer? aTimer;
+
+    protected override void OnInitialized()
+    {
+        aTimer = new Timer(Tick!, null, 0, 1000);
+    }
+
+    private void Tick(object _)
+    {
+        theDate = DateTime.Now.ToString("dd-MM-yyyy");
+        theTime = DateTime.Now.ToString("hh:mm:ss");
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        aTimer?.Dispose();
+    }
+}
