@@ -1,3 +1,3 @@
 # Blazor_Server
-# Web Application
-* On Development *
+* Web Application
+* One Page Application
